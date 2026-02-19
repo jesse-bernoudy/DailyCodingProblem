@@ -1,5 +1,6 @@
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -102,5 +103,85 @@ public class EasyProblems {
         return sb.toString();
     }
  
+    private static class NAryNode {
+        public int value;
+        List<NAryNode> children;
+
+        public NAryNode(int value) {
+            this.value = value;
+            children = new ArrayList<>();
+        }
+
+        public void addChild(NAryNode child) {
+            this.children.add(child);
+        }
+    }
+
+    public static boolean isSymetrical(NAryNode left, NAryNode right) {
+        if (left.value != right.value) {
+            return false;
+        }
+        if (left.children == null && right.children == null) {
+            return true;
+        }
+        if (left.children.size() != right.children.size()) {
+            return false;
+        }
+        int k = left.children.size();
+        for (int i = 0; i < k; i++) {
+            if (!isSymetrical(left.children.get(i), right.children.get(k - 1 - i))) {
+                return false;
+            }
+        }
+        return true;
+    }
     
+    public static int hIndex(int[] citations) {
+
+        if (citations == null || citations.length == 0) {
+            return 0;
+        }
+
+        Arrays.sort(citations);
+
+        int h = 0;
+        int n = citations.length;
+
+        for (int i = 1; i <= n; i++) {
+            int citationCountOfIthMostCited = citations[n - i];
+            if (citationCountOfIthMostCited >= i) {
+                h = i;
+            } else {
+                break; // once it fails, bigger i will also fail
+            }
+
+        }
+        return h;
+    }
+
+    public static int hIndex2(int[] citations) {
+        if (citations == null || citations.length == 0) {
+            return 0;
+        }
+
+        int n = citations.length;
+        int[] buckets = new int[n + 1];
+        for (int i = 0; i < n; i++) {
+            int citationCount = citations[i];
+            if (citationCount >= n) {
+                buckets[n]++;
+            } else {
+                buckets[citationCount]++;
+            }
+        }
+        int papersAtLeast = 0;
+        for (int j = n; j >= 0; j--) {
+            papersAtLeast += buckets[j];
+            if (papersAtLeast >= j) {
+                return j;
+            }
+        }
+        return 0;
+
+    }
 }

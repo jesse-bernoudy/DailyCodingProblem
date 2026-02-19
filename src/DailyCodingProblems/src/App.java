@@ -14,12 +14,21 @@ public class App {
 
         //System.out.println(MediumProblems.arrangeInts(new int[] { 121, 12}));
 
-        testBasic2x2();
-        testDiagonalAndNoReuse();
-        testClassic4x4();
-        testDuplicatesInDictionary();
-        testEmptyAndNoMatches();
-        System.out.println("All tests passed.");
+        // testBasic2x2();
+        // testDiagonalAndNoReuse();
+        // testClassic4x4();
+        // testDuplicatesInDictionary();
+        // testEmptyAndNoMatches();
+        // System.out.println("All tests passed.");
+
+        // System.out.println("Pattern len 1: " + MediumProblems.NumUnlockPatterns(1));
+        // System.out.println("Pattern len 2: " + MediumProblems.NumUnlockPatterns(2));
+        // System.out.println("Pattern len 3: " + MediumProblems.NumUnlockPatterns(3));
+        // System.out.println("Pattern len 4: " + MediumProblems.NumUnlockPatterns(4));
+
+        System.out.println("H Index of [4, 3, 0, 1, 5]: " + EasyProblems.hIndex2(new int[] { 4, 3, 0, 1, 5 }));
+        System.out.println("H Index of [0, 0, 0]: " + EasyProblems.hIndex2(new int[] {0,0,0 }));
+        System.out.println("H Index of [10,8,5,4,3]: " + EasyProblems.hIndex2(new int[] {10,8,5,4,3 }));
     }
 
     private static void assertEquals(int expected, int actual, String name) {
